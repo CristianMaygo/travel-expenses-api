@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TravelExpenseRepository extends JpaRepository<TravelExpense, Long> {
-    List<TravelExpense> findAllByOrderByEmployeeNameAsc();
+    List<TravelExpense> findAllByOrderByEmployee_NameAsc();
 }

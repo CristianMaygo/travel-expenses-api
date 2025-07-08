@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 public class MonthlyExpenseDto {
 
     private String month;
-    private BigDecimal total;
+    private BigDecimal subtotal;
+    private BigDecimal ivaAmount;
+    private BigDecimal totalWithIva;
     private boolean suraAssumes;
 }
