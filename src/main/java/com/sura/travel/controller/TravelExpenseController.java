@@ -18,21 +18,18 @@ public class TravelExpenseController {
     @Autowired
     private TravelExpenseService travelExpenseService;
 
-    // Obtener el resumen completo de gastos
     @GetMapping("/summary")
     public ResponseEntity<ExpenseSummaryDto> getExpenseSummary() {
         ExpenseSummaryDto summary = travelExpenseService.getExpenseSummary();
         return ResponseEntity.ok(summary);
     }
 
-    // Obtener un gasto por ID
     @GetMapping("/{id}")
     public ResponseEntity<TravelExpense> getExpenseById(@PathVariable Long id) {
         TravelExpense expense = travelExpenseService.getExpenseById(id);
         return ResponseEntity.ok(expense);
     }
 
-    // Crear un gasto rápido (empleado por nombre, fecha actual)
     @PostMapping("/simple")
     @ResponseStatus(HttpStatus.CREATED)
     public TravelExpense createSimpleExpense(@Valid @RequestBody SimpleExpenseRequestDto expenseRequest) {

@@ -90,41 +90,33 @@ public class TravelExpenseService {
 
     // --- MÉTODO CREATE ---
     public TravelExpense createSimpleExpense(SimpleExpenseRequestDto request) {
-        // 1. Buscar al empleado por nombre. Si no existe, lo crea.
         Employee employee = employeeRepository.findByName(request.getEmployeeName())
                 .orElseGet(() -> {
                     Employee newEmployee = new Employee(request.getEmployeeName());
                     return employeeRepository.save(newEmployee);
                 });
 
-        // 2. Crear el nuevo gasto
         TravelExpense newExpense = new TravelExpense();
         newExpense.setEmployee(employee);
         newExpense.setValue(request.getValue());
         newExpense.setExpenseDate(LocalDate.now()); // Usa la fecha actual
 
-        // 3. Guardar y devolver el gasto creado
         return travelExpenseRepository.save(newExpense);
     }
 
 
     public TravelExpense updateExpense(Long expenseId, UpdateExpenseRequestDto request) {
-        // 1. Buscar el gasto por ID
         TravelExpense existingExpense = travelExpenseRepository.findById(expenseId)
                 .orElseThrow(() -> new RuntimeException("Gasto no encontrado con id: " + expenseId));
 
-        // 2. Obtener el empleado actual relacionado al gasto
         Employee employee = existingExpense.getEmployee();
 
-        // 3. Actualizar el nombre del empleado (si cambió)
         employee.setName(request.getEmployeeName());
         employeeRepository.save(employee); // Guardar los cambios del empleado
 
-        // 4. Actualizar los datos del gasto
         existingExpense.setExpenseDate(request.getExpenseDate());
         existingExpense.setValue(request.getValue());
 
-        // 5. Guardar y retornar el gasto actualizado
         return travelExpenseRepository.save(existingExpense);
     }
 

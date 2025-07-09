@@ -15,4 +15,6 @@ public class SimpleExpenseRequestDto {
     @NotNull(message = "El valor del gasto no puede ser nulo")
     @Positive(message = "El valor del gasto debe ser positivo")
     private BigDecimal value;
+
+
 }
