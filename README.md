@@ -28,7 +28,7 @@ Puedes probar estos endpoints con herramientas como Postman o Insomnia.
 1. ✅ Obtener el Resumen de Gastos
 Método: GET
 
-URL: /api/expenses/summary
+URL: http://localhost:8080/api/expenses/summary
 
 Descripción: Devuelve un resumen de todos los gastos, agrupados por empleado y mes. Incluye IVA y quién asume el gasto.
 
@@ -56,14 +56,15 @@ json
           "suraAssumes": false
         }
       ]
-    }
+    },
+    // ... más resúmenes de empleados
   ]
 }
 
 2. 🆕 Crear un Nuevo Gasto (Simple)
 Método: POST
 
-URL: /api/expenses/simple
+URL: http://localhost:8080/api/expenses/simple
 
 Descripción: Crea un gasto. Si el empleado no existe, se crea automáticamente. La fecha es la del servidor.
 
@@ -77,8 +78,6 @@ json
 📘 Respuesta Exitosa (201 Created):
 
 json
-Copiar
-Editar
 {
   "id": 14,
   "employee": {
@@ -92,7 +91,7 @@ Editar
 3. 🔍 Buscar un Gasto por ID
 Método: GET
 
-URL: /api/expenses/{id}
+URL: http://localhost:8080/api/expenses/{id}
 
 4. ✏️ Actualizar un Gasto
 Método: PUT
