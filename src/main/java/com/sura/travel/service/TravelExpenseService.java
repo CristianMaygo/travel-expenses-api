@@ -2,6 +2,7 @@ package com.sura.travel.service;
 
 import com.sura.travel.domain.Employee;
 import com.sura.travel.domain.TravelExpense;
+
 import com.sura.travel.dto.*;
 import com.sura.travel.exception.ResourceNotFoundException;
 import com.sura.travel.dto.SimpleExpenseRequestDto;
@@ -14,10 +15,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,6 +83,11 @@ public class TravelExpenseService {
         return new ExpenseSummaryDto(grandTotal.setScale(2, RoundingMode.HALF_UP), employeeSummaries);
     }
 
+    public TravelExpense getExpenseById(Long expenseId) {
+        return travelExpenseRepository.findById(expenseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Gasto no encontrado con id: " + expenseId));
+    }
+
     // --- MÉTODO CREATE ---
     public TravelExpense createSimpleExpense(SimpleExpenseRequestDto request) {
         // 1. Buscar al empleado por nombre. Si no existe, lo crea.
@@ -103,6 +106,29 @@ public class TravelExpenseService {
         // 3. Guardar y devolver el gasto creado
         return travelExpenseRepository.save(newExpense);
     }
+
+
+    public TravelExpense updateExpense(Long expenseId, UpdateExpenseRequestDto request) {
+        // 1. Buscar el gasto por ID
+        TravelExpense existingExpense = travelExpenseRepository.findById(expenseId)
+                .orElseThrow(() -> new RuntimeException("Gasto no encontrado con id: " + expenseId));
+
+        // 2. Obtener el empleado actual relacionado al gasto
+        Employee employee = existingExpense.getEmployee();
+
+        // 3. Actualizar el nombre del empleado (si cambió)
+        employee.setName(request.getEmployeeName());
+        employeeRepository.save(employee); // Guardar los cambios del empleado
+
+        // 4. Actualizar los datos del gasto
+        existingExpense.setExpenseDate(request.getExpenseDate());
+        existingExpense.setValue(request.getValue());
+
+        // 5. Guardar y retornar el gasto actualizado
+        return travelExpenseRepository.save(existingExpense);
+    }
+
+
 
 
 }
