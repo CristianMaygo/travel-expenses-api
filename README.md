@@ -26,14 +26,17 @@ bash:
 ./gradlew bootRun
 
 Endpoints de la API
+
 Puedes probar estos endpoints con herramientas como Postman o Insomnia.
 
 1. ✅ Obtener el Resumen de Gastos
+
 Método: GET
 
 URL: http://localhost:8080/api/expenses/summary
 
-Descripción: Devuelve un resumen de todos los gastos, agrupados por empleado y mes. Incluye IVA y quién asume el gasto.
+Descripción:
+Devuelve un resumen de todos los gastos, agrupados por empleado y mes. Incluye IVA y quién asume el gasto.
 
 📘 Ejemplo de Respuesta (200 OK):
 
@@ -64,7 +67,10 @@ json
   ]
 }
 
+
+
 2. 🆕 Crear un Nuevo Gasto (Simple)
+
 Método: POST
 
 URL: http://localhost:8080/api/expenses/simple
@@ -78,6 +84,7 @@ json
   "employeeName": "Nuevo Empleado",
   "value": 150000
 }
+
 📘 Respuesta Exitosa (201 Created):
 
 json
@@ -92,14 +99,16 @@ json
 }
 
 3. 🔍 Buscar un Gasto por ID
+
 Método: GET
 
 URL: http://localhost:8080/api/expenses/{id}
 
 4. ✏️ Actualizar un Gasto
+
 Método: PUT
 
-URL: http://localhost:8080/api/expenses/5
+URL: http://localhost:8080/api/expenses/{id}
 
 📥 Cuerpo del JSON:
 
@@ -113,6 +122,7 @@ json
 
 
 🛢️ Consola de la Base de Datos H2
+
 Puedes acceder a la consola web de la base de datos H2 en:
 
 🔗 http://localhost:8080/h2-console
@@ -126,6 +136,7 @@ Usuario: sa
 Contraseña: (dejar en blanco)
 
 🧪 Consultas Útiles en la Base de Datos
+
 📋 Ver todos los registros
 
 sql
