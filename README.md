@@ -1,7 +1,12 @@
 API de Gestión de Gastos de Viaje
+
 Esta API permite registrar y consultar los gastos de viaje realizados por empleados, ofreciendo funcionalidades CRUD, reportes mensuales y cálculo de IVA.
 
+📑 Documentación Interactiva (Swagger)
+http://localhost:8080/swagger-ui/index.html
+
 Relaciones de Tablas
+
 EMPLOYEE: Tabla de empleados.
 
 TRAVEL_EXPENSE: Tabla de gastos de viaje.
@@ -148,8 +153,4 @@ JOIN
     EMPLOYEE E ON TE.EMPLOYEE_ID = E.ID
 WHERE
     E.NAME = 'Adam';
-
-    
-📑 Documentación Interactiva (Swagger)
-http://localhost:8080/swagger-ui/index.html
 
