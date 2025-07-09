@@ -127,12 +127,14 @@ Contraseña: (dejar en blanco)
 
 🧪 Consultas Útiles en la Base de Datos
 📋 Ver todos los registros
+
 sql
 SELECT * FROM EMPLOYEE;
 SELECT * FROM TRAVEL_EXPENSE;
+
 🧾 Ver los gastos con el nombre del empleado
 
-sql
+
 SELECT
     TE.ID,
     E.NAME,
@@ -144,7 +146,7 @@ JOIN
     EMPLOYEE E ON TE.EMPLOYEE_ID = E.ID;
     
 👤 Ver los gastos de un empleado específico
-sql
+
 SELECT
     E.NAME,
     TE.EXPENSE_DATE,
