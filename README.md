@@ -14,12 +14,15 @@ TRAVEL_EXPENSE: Tabla de gastos de viaje.
 Relación: TRAVEL_EXPENSE.EMPLOYEE_ID → EMPLOYEE.ID
 
 Comandos para Iniciar el Proyecto
+
 Windows:
 bash:
+
 .\gradlew bootRun
 
 Linux/macOS:
-bash
+bash:
+
 ./gradlew bootRun
 
 Endpoints de la API
